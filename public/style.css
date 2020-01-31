@@ -1,0 +1,461 @@
+/* font inter import */
+@import url('https://rsms.me/inter/inter.css');
+html { font-family: 'Inter', sans-serif; }
+@supports (font-variation-settings: normal) {
+  html { font-family: 'Inter var', sans-serif; }
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    font-family: Inter;
+    scroll-behavior: smooth;
+}
+
+/* HIDE CLASS */
+.hide {
+    display: none;
+}
+
+
+
+
+/* BUTTONS */
+.button-filled {
+    width: 200px;
+    min-height: 70px;
+
+    margin-right:10px;
+
+    font-size: 18px;
+    font-weight: 500;
+    color: white;
+
+    border: none;
+    border-radius: 5px;
+    background: #B56983;
+
+    transition: 0.2s ease;
+}
+.button-filled:hover {
+    cursor: pointer;
+    background: rgb(165, 92, 117);
+}
+.button-filled-negative {
+    width: 200px;
+    min-height: 70px;
+
+    margin-right:10px;
+
+    font-size: 18px;
+    font-weight: 500;
+    color: #B56983;
+
+    border: none;
+    border-radius: 5px;
+    background: white;
+
+    transition: 0.2s ease;
+}
+.button-filled-negative:hover {
+    cursor: pointer;
+    background: rgb(236, 195, 195);
+}
+.button-hollow {
+    min-width: 200px;
+    min-height: 70px;
+
+    margin-right:10px;
+
+    font-size: 18px;
+    font-weight: 500;
+    color: #B56983;
+
+    border: 2px solid #B56983;
+    border-radius: 5px;
+    background: white;
+
+    transition: 0.2s ease;
+}
+.button-hollow:hover {
+    cursor: pointer;
+    color: white;
+    background: #B56983;
+}
+
+.button-container {
+    padding: 10px 0;
+}
+
+
+
+
+
+
+
+
+/* TEXT */
+.title-text {
+    font-size: 48px;
+    font-weight: 900;
+    padding-bottom: 10px;
+}
+.work-title {
+    font-size: 42px;
+    font-weight: 900;
+    padding-bottom: 10px;
+}
+.small-title {
+    font-size: 28px;
+    font-weight: 700;
+    padding-bottom: 0px;
+}
+.small-text {
+    font-size: 20px;
+    padding: 10px 0 20px 0;
+}
+
+
+
+
+
+
+
+
+/* CONTAINERS */
+.container-landing {
+    min-height: 100vh;
+    width: 100vw;
+    max-width: 100%;
+}
+.container-account-container {
+    min-height: 100vh;
+    width: 100vw;
+    max-width: 100%;
+}
+.container-account {
+    min-height: 100vh;
+    width: 100vw;
+    max-width: 100%;
+
+    display: flex;
+}
+.container-dashboard {
+    min-height: 100vh;
+    width: 100vw;
+    max-width: 100%;
+}
+
+
+
+
+
+
+/* BOX AND PICTURE-BOX */
+.box {
+    /* border: 1px solid black; */
+    width: 600px;
+    min-height: 600px;
+    margin: 20px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+}
+.picture-box {
+    /* border: 1px dashed green; */
+    width: 600px;
+    min-height: 600px;
+    margin: 20px;
+}
+
+
+
+
+
+
+
+
+
+/* LANDING PAGE */
+.landing-logo {
+    min-height: 15vh;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.landing-logo img {
+    width: 300px;
+}
+.landing-body {
+    min-height: 85vh;
+
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-wrap: wrap-reverse;
+}
+
+
+
+
+
+/* ACCOUNT REGISTER AND LOG IN */
+.account-sidebar {
+    /* border: 1px solid red; */
+    min-height: 100vh;
+    width: 20vw;
+
+    background: #E9EFF4;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+.account-sidebar .sidebar-logo {
+    margin-top: 30px;
+    width: 75%;
+}
+.account-sidebar .sidebar-logo:hover {
+    cursor: pointer;
+}
+.account-sidebar .sidebar-signin-img {
+    width: 100%;
+}
+.account-register {
+    /* border: 1px solid blue; */
+    min-height: 100vh;
+    width: 80vw;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.account-register form {
+    width: 100%;
+    height: 350px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+.account-register form .ph {
+    font-size: 24px;
+    color: rgb(117, 117, 117);
+    padding-left: 30px;
+}
+.account-register form .inputs-text {
+    width: 100%;
+    height: 70px;
+
+    background: #F3F3F3;
+    border: none;
+    border-radius: 5px;
+}
+
+
+
+
+
+
+
+
+
+/* DASHBOARD */
+
+.sidebar {
+    height: 100vh;
+    width: 20vw;
+    background: #B56983;
+
+    padding-left: 20px;
+
+    position: fixed;
+}
+.dashboard-button-container {
+    height: 400px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+.dashboard-button-container button {
+    text-align: left;
+    padding-left: 0;
+
+    font-size: 24px;
+    color: white;
+
+    border: none;
+    background: transparent;
+}
+.dashboard-button-container button:hover {
+    cursor: pointer;
+    color: rgb(236, 198, 211);
+}
+
+.dashboard-content {
+    /* border: 1px solid black; */
+    min-height: 100vh;
+    width: 80vw;
+    margin-left: 20vw;
+}
+.dashboard-content-button {
+    height: 20vh;
+    padding: 0 10% 0 10%;
+
+    display: flex;
+    align-items: center;
+}
+.dashboard-content-button .button-filled {
+    margin: 0 10px 0 10px;
+}
+.dashboard-cards {
+    /* border: 1px solid black; */
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+.dashboard-cards .card {
+    min-height: 700px;
+    width: 40%;
+    border-radius: 5px;
+    background: #B56983;
+    margin: 20px;
+    padding: 30px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.dashboard-form {
+    display: flex;
+    justify-content: center;
+}
+.dashboard-form .form-card {
+    min-height: 700px;
+    width: 90%;
+    border-radius: 5px;
+    background: #B56983;
+    margin: 20px;
+    padding: 30px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.dashboard-form form {
+    width: 100%;
+    height: 100%;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+.dashboard-form form .ph {
+    font-size: 24px;
+    color: rgb(117, 117, 117);
+    padding-left: 30px;
+}
+.dashboard-form form .inputs-text {
+    width: 100%;
+    height: 70px;
+
+    background: #F3F3F3;
+    border: none;
+    border-radius: 5px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@media screen and (max-width: 1242px) {
+
+/* BUTTONS */
+.button-filled {
+    width: 100%;
+
+    margin-right: 0;
+}
+.button-hollow {
+    width: 100%;
+
+    margin-right: 0;
+}
+
+.button-container {
+    width: 100%;
+    min-height: 200px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+
+
+
+
+
+/* BOX AND PICTURE-BOX */
+.box {
+    min-height: auto;
+}
+.picture-box {
+    min-height: auto;
+}
+
+
+/* ACCOUNT REGISTER AND SIGN IN */
+.account-sidebar {
+    display: none;
+}
+.account-register {
+    width: 100vw;
+    justify-content: flex-start;
+    flex-direction: column;
+}
+.account-register .box {
+    width: auto;
+}
+.account-register .logo-box {
+    width: 300px;
+    height: 15vh;
+    margin-top: 40px;
+}
+.account-register .logo-box img {
+    cursor: pointer;
+}
+.account-register form {
+    align-items: center;
+}
+
+
+
+
+/* DASHBOARD */
+.sidebar {
+    display: none;
+}
+.dashboard-content {
+    width: 100vw;
+    margin: 0;
+}
+.dashboard-cards .card {
+    width: 90%;
+}
+}

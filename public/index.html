@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="style.css">
+    <title>Carevillage</title>
+</head>
+<body>
+    <!-- LANDING PAGE -->
+    <div class="container-landing ">
+        <div class="landing-logo">
+            <img src="./img/logo.svg" alt="">
+        </div>
+        <div class="landing-body">
+            <div class="box">
+                <p class="title-text" style="color: #B56983;">
+                MANAGE YOUR MEDICINE WITH EASE
+                </p>
+                <p class="small-text" style="color: #B56983;">
+                Take care of your medicine management
+                </p>
+                <div class="button-container">
+                    <button class="button-filled" id="homepage-signup-button" onclick="toSignUp()">SIGN UP</button>
+                    <button class="button-hollow" id="homepage-signin-button" onclick="toSignIn()">SIGN IN</button>
+                </div>
+            </div>
+            <div class="picture-box">
+                <img src="./img/landing.svg" alt="">
+            </div>
+        </div>
+    </div>
+
+    <!-- SIGN IN PAGE -->
+    <div class="container-account-container signin hide">
+        <div class="container-account">
+            <div class="account-sidebar">
+                <img src="./img/logo.svg" alt="" class="sidebar-logo" onclick="backHome()">
+                <img src="./img/sign_in.svg" alt="" class="sidebar-signin-img">
+            </div>
+            <div class="account-register">
+                <div class="logo-box">
+                    <img src="./img/logo.svg" alt="" onclick="backHome()">
+                </div>
+                <div class="box">
+                    <p class="title-text" style="color: #B56983;">SIGN IN</p>
+                    <p class="small-text" style="color: #B56983;">Don't have an account? <a href="#" onclick="toSignUp()" style="text-decoration: none; color: #2658D9;">Sign up</a></p>
+    
+                    <form>
+                        <input type="email" name="Email" id="" placeholder="Email" class="inputs-text ph" required>
+                        <input type="password" placeholder="Password" class="inputs-text ph" required>
+                        <button class="button-filled">SUBMIT</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- SIGN UP PAGE -->
+    <div class="container-account-container signup hide">
+        <div class="container-account">
+            <div class="account-sidebar">
+                <img src="./img/logo.svg" alt="" class="sidebar-logo" onclick="backHome()">
+                <img src="./img/sign_up.svg" alt="" class="sidebar-signin-img">
+            </div>
+            <div class="account-register">
+                <div class="logo-box">
+                    <img src="./img/logo.svg" alt="" onclick="backHome()">
+                </div>
+                <div class="box">
+                    <p class="title-text" style="color: #B56983;">SIGN UP</p>
+                    <p class="small-text" style="color: #B56983;">Already have an account <a href="#" onclick="toSignIn()" style="text-decoration: none; color: #2658D9;">Sign in</a></p>
+    
+                    <form>
+                        <input type="text" placeholder="Full name" class="inputs-text ph" required>
+                        <input type="email" placeholder="Email" class="inputs-text ph" required>
+                        <input type="password" placeholder="Password" class="inputs-text ph" required>
+                        <button class="button-filled">SUBMIT</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- DASHBOARD -->
+    <div class="container-dashboard hide">
+        <div class="header"></div>
+        <div class="sidebar">
+            <p class="small-text" style="color: white; font-weight: 700; padding-top: 40px; padding-bottom: 100px;">Jonathon Dolares</p>
+
+            <div class="dashboard-button-container">
+                <button>Medication</button>
+                <button>Profile</button>
+                <button>Log out</button>
+            </div>
+        </div>
+        <div class="dashboard-content">
+            <div class="dashboard-content-button">
+                <button class="button-filled">ADD MEDICINE</button>
+                <button class="button-filled">LOG OUT</button>
+            </div>
+            <div class="dashboard-form-container">
+                <div class="dashboard-form">
+                    <div class="form-card">
+                        <p class="small-title" style="color: white;">NEW MEDICINE</p>
+                        <form>
+                            <input type="text" id="medicine" placeholder="Medicine name" class="inputs-text ph">
+                            <input type="text" id="amount" placeholder="How much to take" class="inputs-text ph">
+                            <input type="text" id="prescriber" placeholder="Who prescribed it" class="inputs-text ph">
+                            <input type="text" id="pharmacy" placeholder="Pharmacy" class="inputs-text ph">
+                            <input type="text" id="start" placeholder="Start date" class="inputs-text ph">
+                            <button class="button-filled-negative" id="add-medicine-button">ADD</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="dashboard-cards">
+                <div class="card">
+                    <div class="medicine">
+                        <p class="small-title" style="color: white;">Medicine Name</p>
+                        <p class="small-text" style="color: white;">Advil 200mg</p>
+                    </div>
+                    <div class="amount">
+                        <p class="small-title" style="color: white;">How much to take</p>
+                        <p class="small-text" style="color: white;">1 daiy after lunch</p>
+                    </div>
+                    <div class="prescriber">
+                        <p class="small-title" style="color: white;">Who prescribed it</p>
+                        <p class="small-text" style="color: white;">Dr Sam Tottles</p>
+                    </div>
+                    <div class="pharmacy">
+                        <p class="small-title" style="color: white;">Pharmacy</p>
+                        <p class="small-text" style="color: white;">Walgreens</p>
+                    </div>
+                    <div class="start">
+                        <p class="small-title" style="color: white;">Start Date</p>
+                        <p class="small-text" style="color: white;">1/20/2020</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="medicine">
+                        <p class="small-title" style="color: white;">Medicine Name</p>
+                        <p class="small-text" style="color: white;">Advil 200mg</p>
+                    </div>
+                    <div class="amount">
+                        <p class="small-title" style="color: white;">How much to take</p>
+                        <p class="small-text" style="color: white;">1 daiy after lunch</p>
+                    </div>
+                    <div class="prescriper">
+                        <p class="small-title" style="color: white;">Who prescribed it</p>
+                        <p class="small-text" style="color: white;">Dr Sam Tottles</p>
+                    </div>
+                    <div class="pharmacy">
+                        <p class="small-title" style="color: white;">Pharmacy</p>
+                        <p class="small-text" style="color: white;">Walgreens</p>
+                    </div>
+                    <div class="start">
+                        <p class="small-title" style="color: white;">Start Date</p>
+                        <p class="small-text" style="color: white;">1/20/2020</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="medicine">
+                        <p class="small-title" style="color: white;">Medicine Name</p>
+                        <p class="small-text" style="color: white;">Advil 200mg</p>
+                    </div>
+                    <div class="amount">
+                        <p class="small-title" style="color: white;">How much to take</p>
+                        <p class="small-text" style="color: white;">1 daiy after lunch</p>
+                    </div>
+                    <div class="prescriper">
+                        <p class="small-title" style="color: white;">Who prescribed it</p>
+                        <p class="small-text" style="color: white;">Dr Sam Tottles</p>
+                    </div>
+                    <div class="pharmacy">
+                        <p class="small-title" style="color: white;">Pharmacy</p>
+                        <p class="small-text" style="color: white;">Walgreens</p>
+                    </div>
+                    <div class="start">
+                        <p class="small-title" style="color: white;">Start Date</p>
+                        <p class="small-text" style="color: white;">1/20/2020</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="medicine">
+                        <p class="small-title" style="color: white;">Medicine Name</p>
+                        <p class="small-text" style="color: white;">Advil 200mg</p>
+                    </div>
+                    <div class="amount">
+                        <p class="small-title" style="color: white;">How much to take</p>
+                        <p class="small-text" style="color: white;">1 daiy after lunch</p>
+                    </div>
+                    <div class="prescriper">
+                        <p class="small-title" style="color: white;">Who prescribed it</p>
+                        <p class="small-text" style="color: white;">Dr Sam Tottles</p>
+                    </div>
+                    <div class="pharmacy">
+                        <p class="small-title" style="color: white;">Pharmacy</p>
+                        <p class="small-text" style="color: white;">Walgreens</p>
+                    </div>
+                    <div class="start">
+                        <p class="small-title" style="color: white;">Start Date</p>
+                        <p class="small-text" style="color: white;">1/20/2020</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- SCRIPTS -->
+    <script>
+    // navigation between landing page buttons
+    function toSignUp() {
+        document.querySelector('.container-landing').classList.add('hide');
+        document.querySelector('.signin').classList.add('hide');
+        document.querySelector('.signup').classList.remove('hide');
+    }
+    function toSignIn() {
+        document.querySelector('.container-landing').classList.add('hide');
+        document.querySelector('.signup').classList.add('hide');
+        document.querySelector('.signin').classList.remove('hide');
+    }
+    function backHome() {
+        document.querySelector('.signup').classList.add('hide');
+        document.querySelector('.signin').classList.add('hide');
+        document.querySelector('.container-landing').classList.remove('hide');
+    }
+    </script>
+    <script src="app.js"></script>
+</body>
+</html>
