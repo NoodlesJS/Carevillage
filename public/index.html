@@ -10,11 +10,11 @@
 <body>
     <!-- LANDING PAGE -->
     <div class="container-landing ">
-        <div class="landing-logo">
+        <div class="landing-logo" id="logo">
             <img src="./img/logo.svg" alt="">
         </div>
         <div class="landing-body">
-            <div class="box">
+            <div class="box" id="landing-body">
                 <p class="title-text" style="color: #B56983;">
                 MANAGE YOUR MEDICINE WITH EASE
                 </p>
@@ -26,7 +26,7 @@
                     <button class="button-hollow" id="homepage-signin-button" onclick="toSignIn()">SIGN IN</button>
                 </div>
             </div>
-            <div class="picture-box">
+            <div class="picture-box" id="landing-image">
                 <img src="./img/landing.svg" alt="">
             </div>
         </div>
@@ -211,6 +211,9 @@
 
 
     <!-- SCRIPTS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/2.1.3/TweenMax.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/2.1.3/TimelineMax.min.js"></script>
+    <script src="app.js"></script>
     <script>
     // navigation between landing page buttons
     function toSignUp() {
@@ -228,7 +231,12 @@
         document.querySelector('.signin').classList.add('hide');
         document.querySelector('.container-landing').classList.remove('hide');
     }
+
+    var animation = new TimelineMax();
+        animation.from('#logo', 1, {y: '50', opacity: 0, ease: Power1.easeOut})
+        animation.from('#landing-image', 1, {x: '100', opacity: 0, ease: Power1.easeOut}, '-=.3')
+        animation.from('#landing-body', 1, {x: '-100', opacity: 0, ease: Power1.easeOut},'-=.5')
     </script>
-    <script src="app.js"></script>
+    
 </body>
 </html>
