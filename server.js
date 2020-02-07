@@ -33,8 +33,8 @@ function runServer() {
           return reject(err);
         }
         server = app
-          .listen(8080, () => {
-            console.log(`DB connected and your app is listening on port 8080`);
+          .listen(process.env.PORT||8080, () => {
+            console.log(`DB connected and your app is listening on some port`);
             resolve();
           })
           .on('error', err => {
