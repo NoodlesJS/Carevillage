@@ -34,4 +34,22 @@ router.post('/register', async (req,res) => {
     }
 })
 
+router.post('/login', async (req, res) =>{
+    // VALIDATE DATA
+    const {error} = loginValidation(req.body);
+    if(error) return res.status(400).send(error.details[0].message);
+
+    // CHECK IF EMAIL EXISTS
+    const user = await User.findOne({email: req.body.email});
+    if(!user) return res.status(400).send('Email does not exist');
+
+    // VALIDATE PASSWORD
+    const validatedPass = await bcrypt.compare(req.body.password, user.password);
+    if(!validatedPass) return res.status(400).send('Password is incorrect');
+
+    // CREATE AND ASSIGN JWT TOKEN
+    const token = jwt.sign({_id: user._id}, process.env.TOKEN_SECRET);
+    res.header('auth-token', token);
+});
+
 module.exports = router;

@@ -319,6 +319,9 @@ html { font-family: 'Inter', sans-serif; }
     justify-content: center;
     flex-wrap: wrap;
 }
+.dashboard-cards-button {
+    display: flex;
+}
 .dashboard-cards .card {
     min-height: 700px;
     width: 40%;

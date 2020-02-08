@@ -9,7 +9,7 @@
 </head>
 <body>
     <!-- LANDING PAGE -->
-    <div class="container-landing ">
+    <div class="container-landing">
         <div class="landing-logo" id="logo">
             <img src="./img/logo.svg" alt="">
         </div>
@@ -72,11 +72,11 @@
                     <p class="title-text" style="color: #B56983;">SIGN UP</p>
                     <p class="small-text" style="color: #B56983;">Already have an account <a href="#" onclick="toSignIn()" style="text-decoration: none; color: #2658D9;">Sign in</a></p>
     
-                    <form>
-                        <input type="text" placeholder="Full name" class="inputs-text ph" required>
-                        <input type="email" placeholder="Email" class="inputs-text ph" required>
-                        <input type="password" placeholder="Password" class="inputs-text ph" required>
-                        <button class="button-filled">SUBMIT</button>
+                    <form class="signup-form">
+                        <input type="text" id="register-name" placeholder="Full name" class="inputs-text ph" required>
+                        <input type="email" id="register-email" placeholder="Email" class="inputs-text ph" required>
+                        <input type="password" id="register-password" placeholder="Password" class="inputs-text ph" required>
+                        <button class="button-filled" id="signup-button">SUBMIT</button>
                     </form>
                 </div>
             </div>
@@ -100,7 +100,7 @@
                 <button class="button-filled">ADD MEDICINE</button>
                 <button class="button-filled">LOG OUT</button>
             </div>
-            <div class="dashboard-form-container">
+            <div class="dashboard-form-container hide">
                 <div class="dashboard-form">
                     <div class="form-card">
                         <p class="small-title" style="color: white;">NEW MEDICINE</p>
@@ -138,27 +138,9 @@
                         <p class="small-title" style="color: white;">Start Date</p>
                         <p class="small-text" style="color: white;">1/20/2020</p>
                     </div>
-                </div>
-                <div class="card">
-                    <div class="medicine">
-                        <p class="small-title" style="color: white;">Medicine Name</p>
-                        <p class="small-text" style="color: white;">Advil 200mg</p>
-                    </div>
-                    <div class="amount">
-                        <p class="small-title" style="color: white;">How much to take</p>
-                        <p class="small-text" style="color: white;">1 daiy after lunch</p>
-                    </div>
-                    <div class="prescriper">
-                        <p class="small-title" style="color: white;">Who prescribed it</p>
-                        <p class="small-text" style="color: white;">Dr Sam Tottles</p>
-                    </div>
-                    <div class="pharmacy">
-                        <p class="small-title" style="color: white;">Pharmacy</p>
-                        <p class="small-text" style="color: white;">Walgreens</p>
-                    </div>
-                    <div class="start">
-                        <p class="small-title" style="color: white;">Start Date</p>
-                        <p class="small-text" style="color: white;">1/20/2020</p>
+                    <div class="dashboard-cards-button">
+                        <button class="button-filled-negative">EDIT</button>
+                        <button class="button-filled-negative">DELETE</button>
                     </div>
                 </div>
                 <div class="card">
@@ -170,7 +152,7 @@
                         <p class="small-title" style="color: white;">How much to take</p>
                         <p class="small-text" style="color: white;">1 daiy after lunch</p>
                     </div>
-                    <div class="prescriper">
+                    <div class="prescriber">
                         <p class="small-title" style="color: white;">Who prescribed it</p>
                         <p class="small-text" style="color: white;">Dr Sam Tottles</p>
                     </div>
@@ -181,6 +163,10 @@
                     <div class="start">
                         <p class="small-title" style="color: white;">Start Date</p>
                         <p class="small-text" style="color: white;">1/20/2020</p>
+                    </div>
+                    <div class="dashboard-cards-button">
+                        <button class="button-filled-negative">EDIT</button>
+                        <button class="button-filled-negative">DELETE</button>
                     </div>
                 </div>
                 <div class="card">
@@ -192,7 +178,7 @@
                         <p class="small-title" style="color: white;">How much to take</p>
                         <p class="small-text" style="color: white;">1 daiy after lunch</p>
                     </div>
-                    <div class="prescriper">
+                    <div class="prescriber">
                         <p class="small-title" style="color: white;">Who prescribed it</p>
                         <p class="small-text" style="color: white;">Dr Sam Tottles</p>
                     </div>
@@ -203,6 +189,36 @@
                     <div class="start">
                         <p class="small-title" style="color: white;">Start Date</p>
                         <p class="small-text" style="color: white;">1/20/2020</p>
+                    </div>
+                    <div class="dashboard-cards-button">
+                        <button class="button-filled-negative">EDIT</button>
+                        <button class="button-filled-negative">DELETE</button>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="medicine">
+                        <p class="small-title" style="color: white;">Medicine Name</p>
+                        <p class="small-text" style="color: white;">Advil 200mg</p>
+                    </div>
+                    <div class="amount">
+                        <p class="small-title" style="color: white;">How much to take</p>
+                        <p class="small-text" style="color: white;">1 daiy after lunch</p>
+                    </div>
+                    <div class="prescriber">
+                        <p class="small-title" style="color: white;">Who prescribed it</p>
+                        <p class="small-text" style="color: white;">Dr Sam Tottles</p>
+                    </div>
+                    <div class="pharmacy">
+                        <p class="small-title" style="color: white;">Pharmacy</p>
+                        <p class="small-text" style="color: white;">Walgreens</p>
+                    </div>
+                    <div class="start">
+                        <p class="small-title" style="color: white;">Start Date</p>
+                        <p class="small-text" style="color: white;">1/20/2020</p>
+                    </div>
+                    <div class="dashboard-cards-button">
+                        <button class="button-filled-negative">EDIT</button>
+                        <button class="button-filled-negative">DELETE</button>
                     </div>
                 </div>
             </div>
