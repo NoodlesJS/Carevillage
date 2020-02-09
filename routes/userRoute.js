@@ -3,7 +3,7 @@ const User = require('../models/userModel');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken')
 
-const {registerValidation, loginValidation} = require('./userValidation');
+const {registerValidation, loginValidation} = require('./Validation');
 
 // ROUTES
 router.post('/register', async (req,res) => {
@@ -28,7 +28,7 @@ router.post('/register', async (req,res) => {
     });
     try {
         const savedUser = await user.save();
-        res.status(201).send(user.serialize());
+        res.status(201).send(savedUser.serialize());
     }catch(err) {
         res.status(400).send(err);
     }
@@ -49,7 +49,7 @@ router.post('/login', async (req, res) =>{
 
     // CREATE AND ASSIGN JWT TOKEN
     const token = jwt.sign({_id: user._id}, process.env.TOKEN_SECRET);
-    res.header('auth-token', token);
+    res.header('auth-token', token).send(token);
 });
 
 module.exports = router;

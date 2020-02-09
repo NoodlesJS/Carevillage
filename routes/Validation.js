@@ -19,5 +19,18 @@ function loginValidation(data) {
     return schema.validate(data);
 }
 
+// POST VALIDATION
+function postValidation(data) {
+    const schema = joi.object ({
+        medicine: joi.string().required(),
+        amount: joi.string().required(),
+        prescriber: joi.string().required(),
+        pharmacy: joi.string().required(),
+        start: joi.string().required()
+    })
+    return schema.validate(data);
+}
+
 module.exports.registerValidation = registerValidation;
 module.exports.loginValidation = loginValidation;
+module.exports.postValidation = postValidation;

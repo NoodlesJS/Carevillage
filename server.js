@@ -14,7 +14,7 @@ app.use(express.static('public'));
 
 // IMPORTED ROUTES
 const userRoutes = require('./routes/userRoute');
-
+const medsRoutes = require('./routes/medsRoute');
 
 // MIDDLEWARE
 app.use(express.json());
@@ -22,6 +22,7 @@ app.use(express.json());
 
 // ROUTES
 app.use('/api/user', userRoutes);
+app.use('/api/meds', medsRoutes);
 
 // SERVER RUN AND CLOSE
 let server;

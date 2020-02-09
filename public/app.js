@@ -25,5 +25,6 @@ signUpButton.addEventListener('click', function(e) {
     .then(response => response.json())
     .then(data => {
         console.log(data);
+        alert('New account created!');
     });
 })
