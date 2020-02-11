@@ -5,7 +5,7 @@ const verify = require('./userVerification');
 const {postValidation} = require('./Validation');
 
 router.get('/', verify, async (req, res) => {
-    const allPosts = await meds.find({user: req.body._id});
+    const allPosts = await meds.find({user: req.user._id});
     try {
         res.send(allPosts);
     }catch (err) {
@@ -17,10 +17,10 @@ router.post('/post', verify, async (req, res) => {
     // VALIDATING DATA
     const {error} = postValidation(req.body);
     if(error) return res.status(400).send(error.detail[0].message);
-
+    
     // CREATING POST
     const post = new meds ({
-        user: req.body._id,
+        user: req.user._id,
         medicine: req.body.medicine,
         amount: req.body.amount,
         prescriber: req.body.prescriber,
@@ -35,4 +35,14 @@ router.post('/post', verify, async (req, res) => {
     }
 });
 
+router.delete('/:id', verify, (req, res) => {
+    meds.findByIdAndRemove({_id: req.params.id})
+    .then(() => {
+        res.status(204).json({ message: "success" });
+    })
+    .catch(err => {
+        console.log(err);
+        res.status(400).send('Delete fail');
+    })
+});
 module.exports = router;

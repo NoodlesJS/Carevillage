@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 
+
 const medSchema = new mongoose.Schema ({
     user: {
         type: mongoose.Schema.Types.ObjectId,
@@ -22,13 +23,15 @@ const medSchema = new mongoose.Schema ({
     }
 });
 
+
 medSchema.methods.serialize = function() {
     return {
         medicine: this.medicine,
         amount: this.amount,
         prescriber: this.prescriber,
         pharmacy: this.pharmacy,
-        start: this.start
+        start: this.start,
+        user: this.user
     };
 };
 
