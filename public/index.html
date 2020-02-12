@@ -8,6 +8,15 @@
     <title>Carevillage</title>
 </head>
 <body>
+    <!-- LOADING SCREEN -->
+    <div class="loading hide">
+        <div class="loading-screen">
+            <div class="loading-card">
+                <p>Please wait a moment...</p>
+            </div>
+        </div>
+    </div>
+
     <!-- LANDING PAGE -->
     <div class="container-landing">
         <div class="landing-logo" id="logo">
@@ -47,10 +56,10 @@
                     <p class="title-text" style="color: #B56983;">SIGN IN</p>
                     <p class="small-text" style="color: #B56983;">Don't have an account? <a href="#" onclick="toSignUp()" style="text-decoration: none; color: #2658D9;">Sign up</a></p>
     
-                    <form>
-                        <input type="email" name="Email" id="" placeholder="Email" class="inputs-text ph" required>
-                        <input type="password" placeholder="Password" class="inputs-text ph" required>
-                        <button class="button-filled">SUBMIT</button>
+                    <form class="signin-form">
+                        <input type="email" name="Email" id="login-email" placeholder="Email" class="inputs-text ph" required>
+                        <input type="password" placeholder="Password" id="login-password" class="inputs-text ph" required>
+                        <button class="button-filled" id="signin-button">SUBMIT</button>
                     </form>
                 </div>
             </div>

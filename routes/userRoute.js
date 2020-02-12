@@ -41,15 +41,15 @@ router.post('/login', async (req, res) =>{
 
     // CHECK IF EMAIL EXISTS
     const user = await User.findOne({email: req.body.email});
-    if(!user) return res.status(400).send('Email does not exist');
+    if(!user) return res.status(400).json('Incorrect credentials');
 
     // VALIDATE PASSWORD
     const validatedPass = await bcrypt.compare(req.body.password, user.password);
-    if(!validatedPass) return res.status(400).send('Password is incorrect');
+    if(!validatedPass) return res.status(400).json('Incorrect credentials');
 
     // CREATE AND ASSIGN JWT TOKEN
     const token = jwt.sign({_id: user._id}, process.env.TOKEN_SECRET);
-    res.header('auth-token', token).send(token);
+    res.header('auth-token', token).send({token: token});
 });
 
 module.exports = router;

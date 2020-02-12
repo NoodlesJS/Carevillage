@@ -119,6 +119,33 @@ html { font-family: 'Inter', sans-serif; }
 
 
 
+/* LOADING SCREEN */
+.loading-screen {
+    min-height: 100vh;
+    min-width: 100vw;
+    max-width: 100%;
+
+    position: fixed;
+    background: rgb(0, 0, 0, 0.1);
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.loading-card {
+    height: 150px;
+    width: 300px;
+    padding: 5px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background: white;
+    border-radius: 5px;
+}
+
 
 
 

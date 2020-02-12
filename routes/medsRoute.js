@@ -7,7 +7,7 @@ const {postValidation} = require('./Validation');
 router.get('/', verify, async (req, res) => {
     const allPosts = await meds.find({user: req.user._id});
     try {
-        res.send(allPosts);
+        res.json(allPosts);
     }catch (err) {
         res.status(400).send('Posts not found');
     }
