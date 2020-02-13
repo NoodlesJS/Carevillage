@@ -143,6 +143,9 @@ signInBUtton.addEventListener('click', async function(e) {
     document.querySelector('.loading').classList.remove('hide');
     const response = await fetch('api/user/login', {
         method: 'POST',
+        headers: {
+            'Content-Type': 'application/json; charset=utf-8'
+        },
         body: data
     });
     
