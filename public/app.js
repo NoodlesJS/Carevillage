@@ -150,6 +150,8 @@ signInBUtton.addEventListener('click', async function(e) {
         body: data
     });
     
+    console.log(response);
+    console.log(response.json());
     try {
         token = await response.json();
         console.log(token);
