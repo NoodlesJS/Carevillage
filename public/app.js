@@ -51,41 +51,6 @@ function displayEntries(projects) {
    switchToDashboard();
 }
 
-function addEntries() {
-    projects.forEach(function(project) {
-        let data = `
-                <div class="card" id='${project._id}'>
-                    <div class="medicine">
-                        <p class="small-title" style="color: white;">Medicine Name</p>
-                        <p class="small-text" style="color: white;">${project.medicine}</p>
-                    </div>
-                    <div class="amount">
-                        <p class="small-title" style="color: white;">How much to take</p>
-                        <p class="small-text" style="color: white;">${project.amount}</p>
-                    </div>
-                    <div class="prescriber">
-                        <p class="small-title" style="color: white;">Who prescribed it</p>
-                        <p class="small-text" style="color: white;">${project.prescriber}</p>
-                    </div>
-                    <div class="pharmacy">
-                        <p class="small-title" style="color: white;">Pharmacy</p>
-                        <p class="small-text" style="color: white;">${project.pharmacy}</p>
-                    </div>
-                    <div class="start">
-                        <p class="small-title" style="color: white;">Start Date</p>
-                        <p class="small-text" style="color: white;">${project.start}</p>
-                    </div>
-                    <div class="dashboard-cards-button">
-                        <button class="button-filled-negative">EDIT</button>
-                        <button class="button-filled-negative">DELETE</button>
-                    </div>
-                </div>
-        `
-        displayEntries(data);
-    })
-}
-
-
 
 // GET USER ENTRIES
  async function getEntries(key) {
@@ -199,6 +164,6 @@ signInBUtton.addEventListener('click', async function(e) {
     }
     else {
         clearLogin();
-        getEntries(token.token);
+        getEntries(token);
     }
 });
