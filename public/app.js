@@ -185,8 +185,8 @@ signInBUtton.addEventListener('click', async function(e) {
         body: data
     });
     
-   token = await response.json();
-
+    token = await response.json();
+    console.log(token);
     // checking if fetched value is incorrect
     if (token === 'Incorrect credentials') {
         document.querySelector('.loading').classList.add('hide');
