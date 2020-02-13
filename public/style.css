@@ -303,7 +303,7 @@ html { font-family: 'Inter', sans-serif; }
     position: fixed;
 }
 .dashboard-button-container {
-    height: 400px;
+    height: 200px;
 
     display: flex;
     flex-direction: column;

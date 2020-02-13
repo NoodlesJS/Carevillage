@@ -1,5 +1,92 @@
+//token and user projects
 let token = '';
-const userEntry = [];
+let projects = [];
+
+// function to clear form fields
+function clearRegister() {
+    document.querySelector('.signup-form').reset();
+}
+function clearLogin() {
+    document.querySelector('.signin-form').reset();
+}
+function switchToDashboard() {
+    document.querySelector('.signin').classList.add('hide');
+    document.querySelector('.container-dashboard').classList.remove('hide');
+    document.querySelector('.loading').classList.add('hide');
+}
+
+// DASHBOARD ENTRY DISPLAY
+function displayEntries(projects) {
+    const items = projects.map(project => {
+        return `
+        <div class="card" id='${project._id}'>
+            <div class="medicine">
+                <p class="small-title" style="color: white;">Medicine Name</p>
+                <p class="small-text" style="color: white;">${project.medicine}</p>
+            </div>
+            <div class="amount">
+                <p class="small-title" style="color: white;">How much to take</p>
+                <p class="small-text" style="color: white;">${project.amount}</p>
+            </div>
+            <div class="prescriber">
+                <p class="small-title" style="color: white;">Who prescribed it</p>
+                <p class="small-text" style="color: white;">${project.prescriber}</p>
+            </div>
+            <div class="pharmacy">
+                <p class="small-title" style="color: white;">Pharmacy</p>
+                <p class="small-text" style="color: white;">${project.pharmacy}</p>
+            </div>
+            <div class="start">
+                <p class="small-title" style="color: white;">Start Date</p>
+                <p class="small-text" style="color: white;">${project.start}</p>
+            </div>
+            <div class="dashboard-cards-button">
+                <button class="button-filled-negative">EDIT</button>
+                <button class="button-filled-negative">DELETE</button>
+            </div>
+        </div>
+        `
+    }).join('');
+   document.querySelector('.dashboard-cards').innerHTML += items;
+   switchToDashboard();
+}
+
+function addEntries() {
+    projects.forEach(function(project) {
+        let data = `
+                <div class="card" id='${project._id}'>
+                    <div class="medicine">
+                        <p class="small-title" style="color: white;">Medicine Name</p>
+                        <p class="small-text" style="color: white;">${project.medicine}</p>
+                    </div>
+                    <div class="amount">
+                        <p class="small-title" style="color: white;">How much to take</p>
+                        <p class="small-text" style="color: white;">${project.amount}</p>
+                    </div>
+                    <div class="prescriber">
+                        <p class="small-title" style="color: white;">Who prescribed it</p>
+                        <p class="small-text" style="color: white;">${project.prescriber}</p>
+                    </div>
+                    <div class="pharmacy">
+                        <p class="small-title" style="color: white;">Pharmacy</p>
+                        <p class="small-text" style="color: white;">${project.pharmacy}</p>
+                    </div>
+                    <div class="start">
+                        <p class="small-title" style="color: white;">Start Date</p>
+                        <p class="small-text" style="color: white;">${project.start}</p>
+                    </div>
+                    <div class="dashboard-cards-button">
+                        <button class="button-filled-negative">EDIT</button>
+                        <button class="button-filled-negative">DELETE</button>
+                    </div>
+                </div>
+        `
+        displayEntries(data);
+    })
+}
+
+
+
 // GET USER ENTRIES
  async function getEntries(key) {
     const userData = await fetch('/api/meds/', {
@@ -14,16 +101,17 @@ const userEntry = [];
         }
     });
     
-   const entries = await userData.json();
-   console.log(entries);
-   document.querySelector('.signin').classList.add('hide');
-   document.querySelector('.container-dashboard').classList.remove('hide');
-   document.querySelector('.loading').classList.add('hide');
-
+    const entries = await userData.json();
+    projects = entries;
+    console.log(projects); //clear this out later
+    displayEntries(projects);
+    // addEntries();
 }
 
-// REGISTRATION
 
+
+
+// REGISTRATION
 // function to get sign up form data
 function getRegister() {
     const name = document.querySelector('#register-name').value;
@@ -38,13 +126,6 @@ function getRegister() {
     return (JSON.stringify(data));
 }
 
-// function to clear form fields
-function clearRegister() {
-    document.querySelector('.signup-form').reset();
-}
-function clearLogin() {
-    document.querySelector('.signin-form').reset();
-}
 
 // sign up button pressed
 const signUpButton = document.querySelector('#signup-button');
@@ -69,8 +150,10 @@ signUpButton.addEventListener('click', async function(e) {
 });
 
 
-// LOGIN AND GETTING USER ENTRY
 
+
+
+// LOGIN
 // function to get login form data
 function getLogin() {
     const email = document.querySelector('#login-email').value;
@@ -84,14 +167,6 @@ function getLogin() {
 }
 function clearLogin() {
     document.querySelector('.signin-form').reset();
-}
-
-function checkCredentials() {
-    if (token === 'Incorrect credentials') {
-        document.querySelector('.loading').classList.add('hide');
-        alert('Incorrect credentials. Please try again');
-    }
-    return;
 }
 
 // sign in button is pressed
@@ -111,7 +186,8 @@ signInBUtton.addEventListener('click', async function(e) {
     });
     
    token = await response.json();
-   console.log(token.token);
+
+    // checking if fetched value is incorrect
     if (token === 'Incorrect credentials') {
         document.querySelector('.loading').classList.add('hide');
         alert('Incorrect credentials. Please try again');
@@ -120,6 +196,4 @@ signInBUtton.addEventListener('click', async function(e) {
         clearLogin();
         getEntries(token.token);
     }
-
-    
 });
