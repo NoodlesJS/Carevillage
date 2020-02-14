@@ -10,7 +10,7 @@ router.post('/register', async (req,res) => {
 
     // VALIDATE DATA
     const {error} = registerValidation(req.body);
-    if(error) return res.status(400).send(error.details[0].message);
+    if(error) return res.status(400).json(error.details[0].message);
 
     // CHECK IF EMAIL ALREADY EXISTS
     const emailExists = await User.findOne({email: req.body.email});
@@ -37,7 +37,7 @@ router.post('/register', async (req,res) => {
 router.post('/login', async (req, res) =>{
     // VALIDATE DATA
     const {error} = loginValidation(req.body);
-    if(error) return res.status(400).send(error.details[0].message);
+    if(error) return res.status(400).json(error.details[0].message);
 
     // CHECK IF EMAIL EXISTS
     const user = await User.findOne({email: req.body.email});
@@ -49,7 +49,7 @@ router.post('/login', async (req, res) =>{
 
     // CREATE AND ASSIGN JWT TOKEN
     const token = jwt.sign({_id: user._id}, process.env.TOKEN_SECRET);
-    res.header('auth-token', token).json(token);
+    res.json(token);
 });
 
 module.exports = router;

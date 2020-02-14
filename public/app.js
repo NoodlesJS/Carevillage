@@ -109,6 +109,7 @@ signUpButton.addEventListener('click', async function(e) {
 
     
     const newUser = await response.json();
+    console.log(newUser);
     document.querySelector('.loading').classList.add('hide');
     clearRegister();
     alert('Account has been created. Please sign in to check on your medication');
