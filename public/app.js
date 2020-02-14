@@ -145,7 +145,8 @@ signInBUtton.addEventListener('click', async function(e) {
     const response = await fetch('api/user/login', {
         method: 'POST',
         headers: {
-            'Content-Type': 'application/json; charset=utf-8'
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
         },
         body: data
     });
