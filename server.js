@@ -28,6 +28,9 @@ app.use(function (req, res, next) {
 // ROUTES
 app.use('/api/user', userRoutes);
 app.use('/api/meds', medsRoutes);
+app.use("*", (req, res) => {
+  return res.status(404).json({ message: "Not Found" });
+});
 
 // SERVER RUN AND CLOSE
 let server;
