@@ -5,9 +5,12 @@ const verify = require('./userVerification');
 const {postValidation} = require('./Validation');
 
 router.get('/', verify, async (req, res) => {
-    const allPosts = await meds.find({user: req.user._id});
+    const info = {};
+    info.projects = await meds.find({user: req.user._id});
+    const userInfo = await User.findById(req.user._id);
+    info.user = userInfo.serialize();
     try {
-        res.json(allPosts);
+        res.json(info);
     }catch (err) {
         res.status(400).send('Posts not found');
     }

@@ -104,7 +104,7 @@
     <div class="container-dashboard hide">
         <div class="header"></div>
         <div class="sidebar">
-            <p class="small-text" style="color: white; font-weight: 700; padding-top: 40px; padding-bottom: 100px;">Welcome User</p>
+            <p class="small-text" style="color: white; font-weight: 700; padding-top: 40px; padding-bottom: 100px;" id="welcome-user">Welcome User</p>
 
             <div class="dashboard-button-container">
                 <button>Medications</button>
@@ -120,11 +120,11 @@
                     <div class="form-card">
                         <p class="small-title" style="color: white;">NEW MEDICINE</p>
                         <form class="med-form">
-                            <input type="text" id="medicine" placeholder="Medicine name" class="inputs-text ph">
-                            <input type="text" id="amount" placeholder="How much to take" class="inputs-text ph">
-                            <input type="text" id="prescriber" placeholder="Who prescribed it" class="inputs-text ph">
-                            <input type="text" id="pharmacy" placeholder="Pharmacy" class="inputs-text ph">
-                            <input type="text" id="start" placeholder="Start date" class="inputs-text ph">
+                            <input type="text" id="medicine" placeholder="Medicine name" class="inputs-text ph" required>
+                            <input type="text" id="amount" placeholder="How much to take" class="inputs-text ph" required>
+                            <input type="text" id="prescriber" placeholder="Who prescribed it" class="inputs-text ph" required>
+                            <input type="text" id="pharmacy" placeholder="Pharmacy" class="inputs-text ph" required>
+                            <input type="text" id="start" placeholder="Start date" class="inputs-text ph" required>
                             <button class="button-filled-negative" id="add-medicine-button">ADD</button>
                         </form>
                     </div>

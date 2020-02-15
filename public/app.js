@@ -1,6 +1,6 @@
 //token and user projects
 let token = '';
-let projects = [];
+let projects = {};
 
 // function to clear form fields
 function clearRegister() {
@@ -17,11 +17,15 @@ function switchToDashboard() {
     document.querySelector('.container-dashboard').classList.remove('hide');
     document.querySelector('.loading').classList.add('hide');
 }
+function setUpDashboard(userInfo) {
+    document.querySelector('#welcome-user').innerHTML = `Welcome ${userInfo.name}`;
+    document.querySelector('.dashboard-cards').innerHTML = '';
+}
 
 // DASHBOARD ENTRY DISPLAY
-function displayEntries(projects) {
-    document.querySelector('.dashboard-cards').innerHTML = '';
-    const items = projects.map(project => {
+function displayEntries(projectsObj) {
+    setUpDashboard(projectsObj.user);
+    const items = projectsObj.projects.map(project => {
         return `
         <div class="card" id='${project._id}'>
             <div class="medicine">
