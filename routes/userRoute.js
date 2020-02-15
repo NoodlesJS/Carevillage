@@ -48,7 +48,7 @@ router.post('/login', async (req, res) =>{
     if(!validatedPass) return res.status(400).json('Incorrect credentials');
 
     // CREATE AND ASSIGN JWT TOKEN
-    const token = jwt.sign({_id: user._id}, process.env.TOKEN_SECRET);
+    const token = await jwt.sign({_id: user._id}, process.env.TOKEN_SECRET);
     res.json(token);
 });
 
