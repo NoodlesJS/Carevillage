@@ -107,20 +107,19 @@
             <p class="small-text" style="color: white; font-weight: 700; padding-top: 40px; padding-bottom: 100px;">Welcome User</p>
 
             <div class="dashboard-button-container">
-                <button>Medication</button>
-                <button>Log out</button>
+                <button>Medications</button>
             </div>
         </div>
         <div class="dashboard-content">
             <div class="dashboard-content-button">
-                <button class="button-filled">ADD MEDICINE</button>
-                <button class="button-filled">LOG OUT</button>
+                <button class="button-filled" id="add-button">ADD MEDICINE</button>
+                <button class="button-filled" id="logout-button">LOG OUT</button>
             </div>
             <div class="dashboard-form-container hide">
                 <div class="dashboard-form">
                     <div class="form-card">
                         <p class="small-title" style="color: white;">NEW MEDICINE</p>
-                        <form>
+                        <form class="med-form">
                             <input type="text" id="medicine" placeholder="Medicine name" class="inputs-text ph">
                             <input type="text" id="amount" placeholder="How much to take" class="inputs-text ph">
                             <input type="text" id="prescriber" placeholder="Who prescribed it" class="inputs-text ph">

@@ -9,6 +9,9 @@ function clearRegister() {
 function clearLogin() {
     document.querySelector('.signin-form').reset();
 }
+function clearMedForm() {
+    document.querySelector('.med-form').reset();
+}
 function switchToDashboard() {
     document.querySelector('.signin').classList.add('hide');
     document.querySelector('.container-dashboard').classList.remove('hide');
@@ -17,6 +20,7 @@ function switchToDashboard() {
 
 // DASHBOARD ENTRY DISPLAY
 function displayEntries(projects) {
+    document.querySelector('.dashboard-cards').innerHTML = '';
     const items = projects.map(project => {
         return `
         <div class="card" id='${project._id}'>
@@ -168,4 +172,61 @@ signInBUtton.addEventListener('click', async function(e) {
         clearLogin();
         getEntries(token);
     }
+});
+
+// LOGOUT
+function getMedInfo() {
+    const medicine = document.querySelector('#medicine').value;
+    const amount = document.querySelector('#amount').value;
+    const prescriber = document.querySelector('#prescriber').value;
+    const pharmacy = document.querySelector('#pharmacy').value;
+    const start = document.querySelector('#start').value;
+
+    const data = {
+        medicine: medicine,
+        amount: amount,
+        prescriber: prescriber,
+        pharmacy: pharmacy,
+        start: start
+    }
+    return (JSON.stringify(data));
+}
+
+const logoutButton = document.querySelector('#logout-button');
+logoutButton.addEventListener('click', function() {
+    document.querySelector('.container-dashboard').classList.add('hide');
+    document.querySelector('.container-landing').classList.remove('hide');
+
+    document.querySelector('.dashboard-cards').innerHTML = '';
+});
+
+// ADDING ENTRY
+const addEntry = document.querySelector('#add-button');
+addEntry.addEventListener('click', function() {
+    document.querySelector('.dashboard-form-container').classList.remove('hide');
+});
+
+const addMed = document.querySelector('#add-medicine-button');
+addMed.addEventListener('click', async function(e) {
+    e.preventDefault();
+
+    const data = getMedInfo();
+    console.log(data);
+    const response = await fetch('api/meds/post', {
+        method: 'POST',
+        mode: "cors",
+        cache: 'no-cache',
+        credentials: 'same-origin',
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+            'auth-token': token
+        },
+        body: data
+    });
+    const newPost = await response.json();
+    document.querySelector('.dashboard-form-container').classList.add('hide');
+    console.log(newPost);
+    clearMedForm();
+    getEntries(token);
 });
