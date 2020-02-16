@@ -28,31 +28,48 @@ function displayEntries(projectsObj) {
     const items = projectsObj.projects.map(project => {
         return `
         <div class="card" id='${project._id}'>
-            <div class="medicine">
-                <p class="small-title" style="color: white;">Medicine Name</p>
-                <p class="small-text" style="color: white;">${project.medicine}</p>
-            </div>
-            <div class="amount">
-                <p class="small-title" style="color: white;">How much to take</p>
-                <p class="small-text" style="color: white;">${project.amount}</p>
-            </div>
-            <div class="prescriber">
-                <p class="small-title" style="color: white;">Who prescribed it</p>
-                <p class="small-text" style="color: white;">${project.prescriber}</p>
-            </div>
-            <div class="pharmacy">
-                <p class="small-title" style="color: white;">Pharmacy</p>
-                <p class="small-text" style="color: white;">${project.pharmacy}</p>
-            </div>
-            <div class="start">
-                <p class="small-title" style="color: white;">Start Date</p>
-                <p class="small-text" style="color: white;">${project.start}</p>
-            </div>
-            <div class="dashboard-cards-button">
-                <button class="button-filled-negative">EDIT</button>
-                <button class="button-filled-negative">DELETE</button>
-            </div>
-        </div>
+                    <div class="card-data-container">
+                        <div class="card-data" id='${project._id}'>
+                            <div class="medicine">
+                                <p class="small-title" style="color: white;">Medicine Name</p>
+                                <p class="small-text" style="color: white;">${project.medicine}</p>
+                            </div>
+                            <div class="amount">
+                                <p class="small-title" style="color: white;">How much to take</p>
+                                <p class="small-text" style="color: white;">${project.amount}</p>
+                            </div>
+                            <div class="prescriber">
+                                <p class="small-title" style="color: white;">Who prescribed it</p>
+                                <p class="small-text" style="color: white;">${project.prescriber}</p>
+                            </div>
+                            <div class="pharmacy">
+                                <p class="small-title" style="color: white;">Pharmacy</p>
+                                <p class="small-text" style="color: white;">${project.pharmacy}</p>
+                            </div>
+                            <div class="start">
+                                <p class="small-title" style="color: white;">Start Date</p>
+                                <p class="small-text" style="color: white;">${project.start}</p>
+                            </div>
+                            <div class="dashboard-cards-button">
+                                <button class="button-filled-negative">EDIT</button>
+                                <button class="button-filled-negative">DELETE</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-form-container hide">
+                        <div class="card-form">
+                            <form>
+                                <input type="text" id="medicine" placeholder="Medicine name" class="inputs-text ph" required>
+                                <input type="text" id="amount" placeholder="How much to take" class="inputs-text ph" required>
+                                <input type="text" id="prescriber" placeholder="Who prescribed it" class="inputs-text ph" required>
+                                <input type="text" id="pharmacy" placeholder="Pharmacy" class="inputs-text ph" required>
+                                <input type="text" id="start" placeholder="Start date" class="inputs-text ph" required>
+                                <button class="button-filled-negative">ADD</button>
+                            </form>
+                        </div>
+                    </div>        
+                    
+        </div> 
         `
     }).join('');
    document.querySelector('.dashboard-cards').innerHTML += items;
@@ -178,7 +195,7 @@ signInBUtton.addEventListener('click', async function(e) {
     }
 });
 
-// LOGOUT
+
 function getMedInfo() {
     const medicine = document.querySelector('#medicine').value;
     const amount = document.querySelector('#amount').value;
@@ -196,11 +213,14 @@ function getMedInfo() {
     return (JSON.stringify(data));
 }
 
+// LOGOUT
 const logoutButton = document.querySelector('#logout-button');
 logoutButton.addEventListener('click', function() {
     document.querySelector('.container-dashboard').classList.add('hide');
     document.querySelector('.container-landing').classList.remove('hide');
 
+    token = '';
+    projects = {};
     document.querySelector('.dashboard-cards').innerHTML = '';
 });
 

@@ -306,59 +306,45 @@ html { font-family: 'Inter', sans-serif; }
 
 /* DASHBOARD */
 
-.sidebar {
-    height: 100vh;
-    width: 20vw;
-    background: #B56983;
+.dashboard-section-1 {
+    min-height: 20vh;
+    width: 100vw;
+    max-width: 100%;
 
-    padding-left: 20px;
+    background: #F2F2F2;
 
-    position: fixed;
-}
-.dashboard-button-container {
-    height: 200px;
-
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-}
-.dashboard-button-container button {
-    text-align: left;
-    padding-left: 0;
-
-    font-size: 24px;
-    color: white;
-
-    border: none;
-    background: transparent;
-}
-.dashboard-button-container button:hover {
-    cursor: pointer;
-    color: rgb(236, 198, 211);
-}
-
-.dashboard-content {
-    /* border: 1px solid black; */
-    min-height: 100vh;
-    width: 80vw;
-    margin-left: 20vw;
-}
-.dashboard-content-button {
-    height: 20vh;
-    padding: 0 10% 0 10%;
-
-    display: flex;
-    align-items: center;
-}
-.dashboard-content-button .button-filled {
-    margin: 0 10px 0 10px;
-}
-.dashboard-cards {
-    /* border: 1px solid black; */
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
 }
+.dashboard-section-2 {
+    min-height: 80vh;
+    width: 100vw;
+    max-width: 100%;
+
+    padding: 100px;
+    background: white;
+}
+
+.dashboard-box-1 {
+    width: 40vw;
+    display: flex;
+    align-items: center;
+}
+.dashboard-box-2 {
+    width: 40vw;
+
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+.dashboard-cards {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
 .dashboard-cards-button {
     display: flex;
 }
@@ -369,6 +355,23 @@ html { font-family: 'Inter', sans-serif; }
     background: #B56983;
     margin: 20px;
     padding: 30px;
+}
+.dashboard-cards .card-data-container {
+    height: 100%;
+}
+.dashboard-cards .card-data {
+    height: 100%;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.dashboard-cards .card-form-container {
+    height: 100%;
+}
+.dashboard-cards .card-form {
+    height: 100%;
+    width: 100%;
 
     display: flex;
     flex-direction: column;
@@ -391,7 +394,7 @@ html { font-family: 'Inter', sans-serif; }
     flex-direction: column;
     justify-content: space-between;
 }
-.dashboard-form form {
+.container-dashboard form {
     width: 100%;
     height: 100%;
 
@@ -399,12 +402,12 @@ html { font-family: 'Inter', sans-serif; }
     flex-direction: column;
     justify-content: space-around;
 }
-.dashboard-form form .ph {
+.container-dashboard form .ph {
     font-size: 24px;
     color: rgb(117, 117, 117);
     padding-left: 30px;
 }
-.dashboard-form form .inputs-text {
+.container-dashboard form .inputs-text {
     width: 100%;
     height: 70px;
 
@@ -412,12 +415,6 @@ html { font-family: 'Inter', sans-serif; }
     border: none;
     border-radius: 5px;
 }
-
-
-
-
-
-
 
 
 
@@ -501,4 +498,25 @@ html { font-family: 'Inter', sans-serif; }
 .dashboard-cards .card {
     width: 90%;
 }
+
+.dashboard-section-2 {
+    padding: 10px;
+}
+.dashboard-box-1 {
+    width: 100vw;
+    padding: 30px 30px 10px 30px;
+
+    display: flex;
+    justify-content: center;
+}
+.dashboard-box-2 {
+    width: 100vw;
+    padding: 30px;
+}
+.container-dashboard form .ph {
+    font-size: 20px;
+    color: rgb(117, 117, 117);
+    padding-left: 30px;
+}
+
 }
