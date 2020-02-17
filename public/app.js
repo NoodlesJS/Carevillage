@@ -94,6 +94,7 @@ function displayEntries(projectsObj) {
     const entries = await userData.json();
     projects = entries;
     console.log(projects); //clear this out later
+    projects.projects.reverse();
     displayEntries(projects);
     // addEntries();
 }
