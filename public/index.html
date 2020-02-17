@@ -12,15 +12,8 @@
     <div class="loading hide">
         <div class="loading-screen">
             <div class="loading-card">
+                <img src="./img/loading.svg" alt="" width="100px">
                 <p>Please wait a moment...</p>
-            </div>
-        </div>
-    </div>
-    <!-- LOADING SCREEN CLICK -->
-    <div class="loading-click hide">
-        <div class="loading-screen-click">
-            <div class="loading-card">
-                <p>Error message</p>
             </div>
         </div>
     </div>
@@ -63,12 +56,13 @@
                 <div class="box">
                     <p class="title-text" style="color: #B56983;">SIGN IN</p>
                     <p class="small-text" style="color: #B56983;">Don't have an account? <a href="#" onclick="toSignUp()" style="text-decoration: none; color: #2658D9;">Sign up</a></p>
-    
+                    <p class="small-text hide">Login information wrong</p>
                     <form class="signin-form">
                         <input type="email" name="Email" id="login-email" placeholder="Email" class="inputs-text ph" required>
                         <input type="password" placeholder="Password" id="login-password" class="inputs-text ph" required>
                         <button class="button-filled" id="signin-button">SUBMIT</button>
                     </form>
+                    
                 </div>
             </div>
         </div>
@@ -88,7 +82,7 @@
                 <div class="box">
                     <p class="title-text" style="color: #B56983;">SIGN UP</p>
                     <p class="small-text" style="color: #B56983;">Already have an account <a href="#" onclick="toSignIn()" style="text-decoration: none; color: #2658D9;">Sign in</a></p>
-    
+                    <p class="small-text hide">Sign up information wrong</p>
                     <form class="signup-form">
                         <input type="text" id="register-name" placeholder="Full name" class="inputs-text ph" required>
                         <input type="email" id="register-email" placeholder="Email" class="inputs-text ph" required>

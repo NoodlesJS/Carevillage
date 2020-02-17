@@ -154,6 +154,7 @@ html { font-family: 'Inter', sans-serif; }
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-direction: column;
 
     background: white;
     border-radius: 5px;
@@ -322,7 +323,7 @@ html { font-family: 'Inter', sans-serif; }
     width: 100vw;
     max-width: 100%;
 
-    padding: 100px;
+    padding: 50px 100px 100px 100px;
     background: white;
 }
 

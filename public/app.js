@@ -2,7 +2,7 @@
 let token = '';
 let projects = {};
 
-// function to clear form fields
+// ALL FUNCTIONS
 function clearRegister() {
     document.querySelector('.signup-form').reset();
 }
@@ -20,6 +20,68 @@ function switchToDashboard() {
 function setUpDashboard(userInfo) {
     document.querySelector('#welcome-user').innerHTML = `Welcome ${userInfo.name}`;
     document.querySelector('.dashboard-cards').innerHTML = '';
+}
+
+function getRegister() {
+    const name = document.querySelector('#register-name').value;
+    const email = document.querySelector('#register-email').value;
+    const password = document.querySelector('#register-password').value;
+
+    const data = {
+        name: name,
+        email: email,
+        password: password
+    }
+    return (JSON.stringify(data));
+}
+
+function getLogin() {
+    const email = document.querySelector('#login-email').value;
+    const password = document.querySelector('#login-password').value;
+
+    const data = {
+        email: email,
+        password: password
+    }
+    return (JSON.stringify(data));
+}
+
+function getMedInfo() {
+    const medicine = document.querySelector('#medicine').value;
+    const amount = document.querySelector('#amount').value;
+    const prescriber = document.querySelector('#prescriber').value;
+    const pharmacy = document.querySelector('#pharmacy').value;
+    const start = document.querySelector('#start').value;
+
+    const data = {
+        medicine: medicine,
+        amount: amount,
+        prescriber: prescriber,
+        pharmacy: pharmacy,
+        start: start
+    }
+    return (JSON.stringify(data));
+}
+
+async function getEntries(key) {
+    const userData = await fetch('/api/meds/', {
+        method: 'GET',
+        mode: "cors",
+        cache: 'no-cache',
+        credentials: 'same-origin',
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+            'auth-token': key
+        }
+    });
+    
+    const entries = await userData.json();
+    projects = entries;
+    console.log(projects); //clear this out later
+    projects.projects.reverse();
+    displayEntries(projects);
+    // addEntries();
 }
 
 // DASHBOARD ENTRY DISPLAY
@@ -77,49 +139,11 @@ function displayEntries(projectsObj) {
 }
 
 
-// GET USER ENTRIES
- async function getEntries(key) {
-    const userData = await fetch('/api/meds/', {
-        method: 'GET',
-        mode: "cors",
-        cache: 'no-cache',
-        credentials: 'same-origin',
-        headers: {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json',
-            'auth-token': key
-        }
-    });
-    
-    const entries = await userData.json();
-    projects = entries;
-    console.log(projects); //clear this out later
-    projects.projects.reverse();
-    displayEntries(projects);
-    // addEntries();
-}
 
 
-
-
-// REGISTRATION
-// function to get sign up form data
-function getRegister() {
-    const name = document.querySelector('#register-name').value;
-    const email = document.querySelector('#register-email').value;
-    const password = document.querySelector('#register-password').value;
-
-    const data = {
-        name: name,
-        email: email,
-        password: password
-    }
-    return (JSON.stringify(data));
-}
-
-
-// sign up button pressed
+// SIGN UP BUTTON PRESSED
 const signUpButton = document.querySelector('#signup-button');
+
 signUpButton.addEventListener('click', async function(e) {
     e.preventDefault();
 
@@ -135,7 +159,6 @@ signUpButton.addEventListener('click', async function(e) {
 
     
     const newUser = await response.json();
-    console.log(newUser);
     document.querySelector('.loading').classList.add('hide');
     clearRegister();
     alert('Account has been created. Please sign in to check on your medication');
@@ -143,26 +166,9 @@ signUpButton.addEventListener('click', async function(e) {
 
 
 
-
-
-// LOGIN
-// function to get login form data
-function getLogin() {
-    const email = document.querySelector('#login-email').value;
-    const password = document.querySelector('#login-password').value;
-
-    const data = {
-        email: email,
-        password: password
-    }
-    return (JSON.stringify(data));
-}
-function clearLogin() {
-    document.querySelector('.signin-form').reset();
-}
-
-// sign in button is pressed
+// SIGN IN BUTTON PRESSED
 const signInBUtton = document.querySelector('#signin-button');
+
 signInBUtton.addEventListener('click', async function(e) {
     e.preventDefault();
 
@@ -197,34 +203,6 @@ signInBUtton.addEventListener('click', async function(e) {
 });
 
 
-function getMedInfo() {
-    const medicine = document.querySelector('#medicine').value;
-    const amount = document.querySelector('#amount').value;
-    const prescriber = document.querySelector('#prescriber').value;
-    const pharmacy = document.querySelector('#pharmacy').value;
-    const start = document.querySelector('#start').value;
-
-    const data = {
-        medicine: medicine,
-        amount: amount,
-        prescriber: prescriber,
-        pharmacy: pharmacy,
-        start: start
-    }
-    return (JSON.stringify(data));
-}
-
-// LOGOUT
-const logoutButton = document.querySelector('#logout-button');
-logoutButton.addEventListener('click', function() {
-    document.querySelector('.container-dashboard').classList.add('hide');
-    document.querySelector('.container-landing').classList.remove('hide');
-
-    token = '';
-    projects = {};
-    document.querySelector('.dashboard-cards').innerHTML = '';
-});
-
 // ADDING ENTRY
 const addEntry = document.querySelector('#add-button');
 addEntry.addEventListener('click', function() {
@@ -251,7 +229,17 @@ addMed.addEventListener('click', async function(e) {
     });
     const newPost = await response.json();
     document.querySelector('.dashboard-form-container').classList.add('hide');
-    console.log(newPost);
     clearMedForm();
     getEntries(token);
+});
+
+// LOGOUT
+const logoutButton = document.querySelector('#logout-button');
+logoutButton.addEventListener('click', function() {
+    document.querySelector('.container-dashboard').classList.add('hide');
+    document.querySelector('.container-landing').classList.remove('hide');
+
+    token = '';
+    projects = {};
+    document.querySelector('.dashboard-cards').innerHTML = '';
 });
