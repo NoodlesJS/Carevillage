@@ -56,7 +56,7 @@
                 <div class="box">
                     <p class="title-text" style="color: #B56983;">SIGN IN</p>
                     <p class="small-text" style="color: #B56983;">Don't have an account? <a href="#" onclick="toSignUp()" style="text-decoration: none; color: #2658D9;">Sign up</a></p>
-                    <p class="small-text hide">Login information wrong</p>
+                    <p class="small-text hide" id="invalid-signin">Login information wrong</p>
                     <form class="signin-form">
                         <input type="email" name="Email" id="login-email" placeholder="Email" class="inputs-text ph" required>
                         <input type="password" placeholder="Password" id="login-password" class="inputs-text ph" required>
@@ -82,7 +82,7 @@
                 <div class="box">
                     <p class="title-text" style="color: #B56983;">SIGN UP</p>
                     <p class="small-text" style="color: #B56983;">Already have an account <a href="#" onclick="toSignIn()" style="text-decoration: none; color: #2658D9;">Sign in</a></p>
-                    <p class="small-text hide">Sign up information wrong</p>
+                    <p class="small-text hide" id="invalid-signup">Sign up information wrong</p>
                     <form class="signup-form">
                         <input type="text" id="register-name" placeholder="Full name" class="inputs-text ph" required>
                         <input type="email" id="register-email" placeholder="Email" class="inputs-text ph" required>
@@ -111,14 +111,14 @@
             <div class="dashboard-form-container hide">
                 <div class="dashboard-form">
                     <div class="form-card">
-                        <p class="small-title" style="color: white;">NEW MEDICINE</p>
+                        <p class="small-title" style="color: #B56983;">NEW MEDICINE</p>
                         <form class="med-form">
                             <input type="text" id="medicine" placeholder="Medicine name" class="inputs-text ph" required>
                             <input type="text" id="amount" placeholder="How much to take" class="inputs-text ph" required>
                             <input type="text" id="prescriber" placeholder="Who prescribed it" class="inputs-text ph" required>
                             <input type="text" id="pharmacy" placeholder="Pharmacy" class="inputs-text ph" required>
                             <input type="text" id="start" placeholder="Start date" class="inputs-text ph" required>
-                            <button class="button-filled-negative" id="add-medicine-button">ADD</button>
+                            <button class="button-filled" id="add-medicine-button">ADD</button>
                         </form>
                     </div>
                 </div>
@@ -128,28 +128,28 @@
                     <div class="card-data-container">
                         <div class="card-data" id='${project._id}'>
                             <div class="medicine">
-                                <p class="small-title" style="color: white;">Medicine Name</p>
-                                <p class="small-text" style="color: white;">${project.medicine}</p>
+                                <p class="small-title" style="color: #B56983;">Medicine Name</p>
+                                <p class="small-text" style="color: #B56983;">${project.medicine}</p>
                             </div>
                             <div class="amount">
-                                <p class="small-title" style="color: white;">How much to take</p>
-                                <p class="small-text" style="color: white;">${project.amount}</p>
+                                <p class="small-title" style="color: #B56983;">How much to take</p>
+                                <p class="small-text" style="color: #B56983;">${project.amount}</p>
                             </div>
                             <div class="prescriber">
-                                <p class="small-title" style="color: white;">Who prescribed it</p>
-                                <p class="small-text" style="color: white;">${project.prescriber}</p>
+                                <p class="small-title" style="color: #B56983;">Who prescribed it</p>
+                                <p class="small-text" style="color: #B56983;">${project.prescriber}</p>
                             </div>
                             <div class="pharmacy">
-                                <p class="small-title" style="color: white;">Pharmacy</p>
-                                <p class="small-text" style="color: white;">${project.pharmacy}</p>
+                                <p class="small-title" style="color: #B56983;">Pharmacy</p>
+                                <p class="small-text" style="color: #B56983;">${project.pharmacy}</p>
                             </div>
                             <div class="start">
-                                <p class="small-title" style="color: white;">Start Date</p>
-                                <p class="small-text" style="color: white;">${project.start}</p>
+                                <p class="small-title" style="color: #B56983;">Start Date</p>
+                                <p class="small-text" style="color: #B56983;">${project.start}</p>
                             </div>
-                            <div class="dashboard-cards-button">
-                                <button class="button-filled-negative">EDIT</button>
-                                <button class="button-filled-negative">DELETE</button>
+                            <div class="button-container">
+                                <button class="button-filled">EDIT</button>
+                                <button class="button-filled">DELETE</button>
                             </div>
                         </div>
                     </div>
@@ -161,7 +161,7 @@
                                 <input type="text" id="prescriber" placeholder="Who prescribed it" class="inputs-text ph" required>
                                 <input type="text" id="pharmacy" placeholder="Pharmacy" class="inputs-text ph" required>
                                 <input type="text" id="start" placeholder="Start date" class="inputs-text ph" required>
-                                <button class="button-filled-negative">ADD</button>
+                                <button class="button-filled">ADD</button>
                             </form>
                         </div>
                     </div>        

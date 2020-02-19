@@ -26,6 +26,7 @@ html { font-family: 'Inter', sans-serif; }
     min-height: 70px;
 
     margin-right:10px;
+    margin-bottom: 10px;
 
     font-size: 18px;
     font-weight: 500;
@@ -46,6 +47,7 @@ html { font-family: 'Inter', sans-serif; }
     min-height: 70px;
 
     margin-right:10px;
+    margin-bottom: 10px;
 
     font-size: 18px;
     font-weight: 500;
@@ -66,6 +68,7 @@ html { font-family: 'Inter', sans-serif; }
     min-height: 70px;
 
     margin-right:10px;
+    margin-bottom: 10px;
 
     font-size: 18px;
     font-weight: 500;
@@ -106,12 +109,12 @@ html { font-family: 'Inter', sans-serif; }
     padding-bottom: 10px;
 }
 .small-title {
-    font-size: 28px;
+    font-size: 24px;
     font-weight: 700;
     padding-bottom: 0px;
 }
 .small-text {
-    font-size: 20px;
+    font-size: 18px;
     padding: 10px 0 20px 0;
 }
 
@@ -312,7 +315,7 @@ html { font-family: 'Inter', sans-serif; }
     width: 100vw;
     max-width: 100%;
 
-    background: #F2F2F2;
+    background: white;
 
     display: flex;
     justify-content: center;
@@ -324,7 +327,7 @@ html { font-family: 'Inter', sans-serif; }
     max-width: 100%;
 
     padding: 50px 100px 100px 100px;
-    background: white;
+    background: #F2F2F2;
 }
 
 .dashboard-box-1 {
@@ -351,11 +354,13 @@ html { font-family: 'Inter', sans-serif; }
 }
 .dashboard-cards .card {
     min-height: 700px;
-    width: 40%;
-    border-radius: 5px;
-    background: #B56983;
+    width: 35%;
+    border-radius: 10px;
+    background: white;
     margin: 20px;
     padding: 30px;
+
+    box-shadow: 0 5px 20px rgb(0, 0, 0, 0.09);
 }
 .dashboard-cards .card-data-container {
     height: 100%;
@@ -385,11 +390,12 @@ html { font-family: 'Inter', sans-serif; }
 }
 .dashboard-form .form-card {
     min-height: 700px;
-    width: 90%;
-    border-radius: 5px;
-    background: #B56983;
+    width: 50%;
+    border-radius: 10px;
+    background: white;
     margin: 20px;
     padding: 30px;
+    box-shadow: 0 5px 20px rgb(0, 0, 0, 0.09);
 
     display: flex;
     flex-direction: column;
@@ -498,6 +504,9 @@ html { font-family: 'Inter', sans-serif; }
 }
 .dashboard-cards .card {
     width: 90%;
+}
+.dashboard-form .form-card {
+width: 90%;
 }
 
 .dashboard-section-2 {

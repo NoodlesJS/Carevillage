@@ -8,9 +8,13 @@ const {registerValidation, loginValidation} = require('./Validation');
 // ROUTES
 router.post('/register', async (req,res) => {
 
+    const err = {};
     // VALIDATE DATA
     const {error} = registerValidation(req.body);
-    if(error) return res.status(400).json(error.details[0].message);
+    if(error) {
+        err.Error = error.details[0].message
+        return res.status(400).send(err);
+    } 
 
     // CHECK IF EMAIL ALREADY EXISTS
     const emailExists = await User.findOne({email: req.body.email});
@@ -35,21 +39,28 @@ router.post('/register', async (req,res) => {
 })
 
 router.post('/login', async (req, res) =>{
+    const err = {};
     // VALIDATE DATA
     const {error} = loginValidation(req.body);
     if(error) return res.status(400).json(error.details[0].message);
 
     // CHECK IF EMAIL EXISTS
     const user = await User.findOne({email: req.body.email});
-    if(!user) return res.status(400).json('Incorrect credentials');
-
+    if(!user) {
+        err.Error = `Email doesn't exist`;
+        return res.status(400).send(err);
+    }
     // VALIDATE PASSWORD
     const validatedPass = await bcrypt.compare(req.body.password, user.password);
-    if(!validatedPass) return res.status(400).json('Incorrect credentials');
+    if(!validatedPass) {
+        err.Error = `Invalid password`;
+        return res.status(400).send(err);
+    }
 
     // CREATE AND ASSIGN JWT TOKEN
-    const token = jwt.sign({_id: user._id}, process.env.TOKEN_SECRET);
-    res.header('auth-token', token).json(token);
+    const auth = {};
+    auth.token = jwt.sign({_id: user._id}, process.env.TOKEN_SECRET);
+    res.header('auth-token', auth.token).send(auth);
 });
 
 module.exports = router;
