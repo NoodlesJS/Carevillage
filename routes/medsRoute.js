@@ -38,14 +38,20 @@ router.post('/post', verify, async (req, res) => {
     }
 });
 
-router.delete('/:id', verify, (req, res) => {
-    meds.findByIdAndRemove({_id: req.params.id})
-    .then(() => {
-        res.status(204).json({ message: "success" });
-    })
-    .catch(err => {
-        console.log(err);
-        res.status(400).send('Delete fail');
-    })
+router.delete('/:id', verify, async (req, res) => {
+    // meds.findByIdAndRemove({_id: req.params.id})
+    // .then(() => {
+    //     res.status(204).json({ message: "success" });
+    // })
+    // .catch(err => {
+    //     console.log(err);
+    //     res.status(400).send('Delete fail');
+    // })
+    await meds.findByIdAndRemove({_id: req.params.id});
+    try {
+        res.json({message: 'success'});
+    } catch (error) {
+        res.send(error);
+    }
 });
 module.exports = router;

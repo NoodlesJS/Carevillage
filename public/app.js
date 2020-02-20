@@ -100,9 +100,9 @@ function displayEntries(projectsObj) {
     setUpDashboard(projectsObj.user);
     const items = projectsObj.projects.map(project => {
         return `
-        <div class="card" id='${project._id}'>
+        <div class="card">
                     <div class="card-data-container">
-                        <div class="card-data" id='${project._id}'>
+                        <div class="card-data">
                             <div class="medicine">
                                 <p class="small-title" style="color: #B56983;">Medicine Name</p>
                                 <p class="small-text" style="color: #B56983;">${project.medicine}</p>
@@ -125,7 +125,7 @@ function displayEntries(projectsObj) {
                             </div>
                             <div class="button-container">
                                 <button class="button-filled">EDIT</button>
-                                <button class="button-filled">DELETE</button>
+                                <button class="button-filled delete-button" id='${project._id}'>DELETE</button>
                             </div>
                         </div>
                     </div>
@@ -137,7 +137,7 @@ function displayEntries(projectsObj) {
                                 <input type="text" id="prescriber" placeholder="Who prescribed it" class="inputs-text ph" required>
                                 <input type="text" id="pharmacy" placeholder="Pharmacy" class="inputs-text ph" required>
                                 <input type="text" id="start" placeholder="Start date" class="inputs-text ph" required>
-                                <button class="button-filled">ADD</button>
+                                <button class="button-filled edit-button" id='${project._id}'>ADD</button>
                             </form>
                         </div>
                     </div>        
@@ -147,6 +147,42 @@ function displayEntries(projectsObj) {
     }).join('');
    document.querySelector('.dashboard-cards').innerHTML += items;
    switchToDashboard();
+}
+async function addEntry(data) {
+    const response = await fetch('api/meds/post', {
+        method: 'POST',
+        mode: "cors",
+        cache: 'no-cache',
+        credentials: 'same-origin',
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+            'auth-token': auth.token
+        },
+        body: data
+    });
+    const newPost = await response.json();
+    document.querySelector('.dashboard-form-container').classList.add('hide');
+    clearMedForm();
+    getEntries(auth.token);
+}
+
+async function deleteEntry(id) {
+    const response = await fetch(`api/meds/${id}`, {
+        method: 'DELETE',
+        mode: "cors",
+        cache: 'no-cache',
+        credentials: 'same-origin',
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+            'auth-token': auth.token
+        }
+    });
+    const message = await response.json();
+    console.log(message);
+    getEntries(auth.token);
+    
 }
 
 
@@ -241,6 +277,8 @@ async function signInFromRegister() {
 }
 
 
+
+
 // SIGN UP BUTTON PRESSED
 const signUpButton = document.querySelector('#signup-button');
 signUpButton.addEventListener('click', async function(e) {
@@ -259,33 +297,27 @@ signInBUtton.addEventListener('click', async function(e) {
 
 
 // ADDING ENTRY
-const addEntry = document.querySelector('#add-button');
-addEntry.addEventListener('click', function() {
-    document.querySelector('.dashboard-form-container').classList.remove('hide');
+const addEntryButton = document.querySelector('#add-button');
+addEntryButton.addEventListener('click', function() {
+    document.querySelector('.med-form').reset();
+    document.querySelector('.dashboard-form-container').classList.toggle('hide');
 });
-
 const addMed = document.querySelector('#add-medicine-button');
 addMed.addEventListener('click', async function(e) {
     e.preventDefault();
-
     const data = getMedInfo();
-    console.log(data);
-    const response = await fetch('api/meds/post', {
-        method: 'POST',
-        mode: "cors",
-        cache: 'no-cache',
-        credentials: 'same-origin',
-        headers: {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json',
-            'auth-token': auth.token
-        },
-        body: data
-    });
-    const newPost = await response.json();
-    document.querySelector('.dashboard-form-container').classList.add('hide');
-    clearMedForm();
-    getEntries(auth.token);
+    addEntry(data);
+});
+
+const deleteButton = document.querySelector('.dashboard-cards');
+deleteButton.addEventListener('click', function(e) {
+    let target = e.target;
+    if(target.matches('.delete-button')) {
+        deleteEntry(target.id);
+    }
+    else {
+        console.log(`Oh, I see you have stumbled upon me. Hey there ;)`);
+    }
 });
 
 // LOGOUT
