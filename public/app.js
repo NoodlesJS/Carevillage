@@ -22,7 +22,10 @@ function setUpDashboard(userInfo) {
     document.querySelector('#welcome-user').innerHTML = `Welcome ${userInfo.name}`;
     document.querySelector('.dashboard-cards').innerHTML = '';
 }
-
+function showEdit(target) {
+    target.parentElement.parentElement.parentElement.classList.add('hide');
+    target.parentElement.parentElement.parentElement.parentElement.lastElementChild.classList.remove('hide');
+}
 function getRegister() {
     const name = document.querySelector('#register-name').value;
     const email = document.querySelector('#register-email').value;
@@ -73,7 +76,22 @@ function getMedInfo() {
     }
     return (JSON.stringify(data));
 }
+function getEditForm(target) {
+    const medicine = target.form[0].value
+    const amount = target.form[1].value
+    const prescriber = target.form[2].value
+    const pharmacy = target.form[3].value
+    const start = target.form[4].value
 
+    const data = {
+        medicine: medicine,
+        amount: amount,
+        prescriber: prescriber,
+        pharmacy: pharmacy,
+        start: start
+    }
+    return (JSON.stringify(data));
+}
 async function getEntries(key) {
     const userData = await fetch('/api/meds/', {
         method: 'GET',
@@ -124,7 +142,7 @@ function displayEntries(projectsObj) {
                                 <p class="small-text" style="color: #B56983;">${project.start}</p>
                             </div>
                             <div class="button-container">
-                                <button class="button-filled">EDIT</button>
+                                <button class="button-filled edit-button">EDIT</button>
                                 <button class="button-filled delete-button" id='${project._id}'>DELETE</button>
                             </div>
                         </div>
@@ -132,12 +150,12 @@ function displayEntries(projectsObj) {
                     <div class="card-form-container hide">
                         <div class="card-form">
                             <form>
-                                <input type="text" id="medicine" placeholder="Medicine name" class="inputs-text ph" required>
-                                <input type="text" id="amount" placeholder="How much to take" class="inputs-text ph" required>
-                                <input type="text" id="prescriber" placeholder="Who prescribed it" class="inputs-text ph" required>
-                                <input type="text" id="pharmacy" placeholder="Pharmacy" class="inputs-text ph" required>
-                                <input type="text" id="start" placeholder="Start date" class="inputs-text ph" required>
-                                <button class="button-filled edit-button" id='${project._id}'>ADD</button>
+                                <input type="text" id="medicine" placeholder="Medicine name" class="inputs-text ph" value="${project.medicine}" required>
+                                <input type="text" id="amount" placeholder="How much to take" class="inputs-text ph" value="${project.amount}" required>
+                                <input type="text" id="prescriber" placeholder="Who prescribed it" class="inputs-text ph" value="${project.prescriber}" required>
+                                <input type="text" id="pharmacy" placeholder="Pharmacy" class="inputs-text ph" value="${project.pharmacy}" required>
+                                <input type="text" id="start" placeholder="Start date" class="inputs-text ph" value="${project.start}" required>
+                                <button class="button-filled update-entry-button" id='${project._id}'>ADD</button>
                             </form>
                         </div>
                     </div>        
@@ -275,7 +293,26 @@ async function signInFromRegister() {
     getEntries(auth.token);
     
 }
-
+async function updateInfo(target, id) {
+    const data = getEditForm(target);
+    await fetch(`api/meds/${id}`, {
+        method: 'PUT',
+        mode: "cors",
+        cache: 'no-cache',
+        credentials: 'same-origin',
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+            'auth-token': auth.token
+        },
+        body: data
+    });
+    try {
+        getEntries(auth.token);
+    } catch (error) {
+        console.log(error);
+    }
+}
 
 
 
@@ -309,14 +346,29 @@ addMed.addEventListener('click', async function(e) {
     addEntry(data);
 });
 
-const deleteButton = document.querySelector('.dashboard-cards');
-deleteButton.addEventListener('click', function(e) {
+// DELETE or EDIT key pressed
+const cardButtons = document.querySelector('.dashboard-cards');
+cardButtons.addEventListener('click', function(e) {
     let target = e.target;
+    // console.log(target);
     if(target.matches('.delete-button')) {
         deleteEntry(target.id);
     }
+    else if(target.matches('.edit-button')) {
+        showEdit(target);
+    }
     else {
-        console.log(`Oh, I see you have stumbled upon me. Hey there ;)`);
+        
+    }
+});
+
+// UPDATE/ADD button pressed on edit form
+cardButtons.addEventListener('click', function(e) {
+    e.preventDefault();
+    let target = e.target;
+    if(target.matches('.update-entry-button')) {
+        console.log(target.id);
+        updateInfo(target, target.id);
     }
 });
 
@@ -330,3 +382,6 @@ logoutButton.addEventListener('click', function() {
     projects = {};
     document.querySelector('.dashboard-cards').innerHTML = '';
 });
+
+
+
