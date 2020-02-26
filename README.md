@@ -5,7 +5,7 @@
 
 ## Demo
 
-- [Live Demo](https://quickpokedex.netlify.com/)
+- [Live Demo](https://gentle-lake-89085.herokuapp.com/)
 ~may take a few extra seconds to load as it is running on free heroku dyno
 
 		Email: test@email.com
@@ -14,21 +14,13 @@
 
 ## Development Process
 
-I always start of by jolting down ideas to develop. Once I have a few ideas, I will select the one that interests me and I can find real case use for.
-Next I move onto sketching down application features and design. Once I have an idea of how I want the application to look, I move onto ***Figma*** to design the UI for my application. I design both mobile and desktop versions.
+Once I have brainstormed an idea, I jolt down features and such on paper and start sketching out a rough design. When I have an idea of how I want the application to look and feel, I move onto ***Figma*** to design the UI for my application. I always make sure my applications are responsive and so I design for both mobile and desktop.
 After my design goes through different iterations and is complete, I move onto development and spend the next few weeks, developing and pulling my hair out fixing bugs :P
 
-*Below is the final UI design I had finished.*
-
-  
-
+*Below is the final UI design* 
 <img  src='./public/img/carevillage_concept.png'  width='1000px'>
-
-  
-
+ 
 ## Technology Used
-
-  
 
 #### Frontend
 
