@@ -19,7 +19,7 @@ function switchToDashboard() {
     document.querySelector('.loading').classList.add('hide');
 }
 function setUpDashboard(userInfo) {
-    document.querySelector('#welcome-user').innerHTML = `Welcome ${userInfo.name}`;
+    document.querySelector('#welcome-user').innerHTML = `Welcome, ${userInfo.name}`;
     document.querySelector('.dashboard-cards').innerHTML = '';
 }
 function showEdit(target) {
@@ -107,7 +107,6 @@ async function getEntries(key) {
     
     const entries = await userData.json();
     projects = entries;
-    console.log(projects); //clear this out later
     projects.projects.reverse();
     displayEntries(projects);
     // addEntries();
@@ -198,7 +197,6 @@ async function deleteEntry(id) {
         }
     });
     const message = await response.json();
-    console.log(message);
     getEntries(auth.token);
     
 }
@@ -210,6 +208,9 @@ async function signUp() {
     document.querySelector('.loading').classList.remove('hide');
     const response = await fetch('/api/user/register', {
         method: 'POST',
+        mode: "cors",
+        cache: 'no-cache',
+        credentials: 'same-origin',
         headers: {
             'Content-Type': 'application/json',
         },
@@ -218,7 +219,6 @@ async function signUp() {
 
     
     const newUser = await response.json();
-    console.log(newUser);
     try {
         if('Error' in newUser) {
             document.querySelector('.loading').classList.add('hide');
@@ -250,7 +250,6 @@ async function signIn() {
 
     try {
         auth = await response.json();
-        console.log(auth);
         if('Error' in auth) {
             document.querySelector('.loading').classList.add('hide');
             document.querySelector('#invalid-signin').classList.remove('hide');
@@ -283,7 +282,6 @@ async function signInFromRegister() {
 
     try {
         auth = await response.json();
-        console.log(auth);
     }catch(err) {
         console.log(err);
     }
@@ -350,7 +348,6 @@ addMed.addEventListener('click', async function(e) {
 const cardButtons = document.querySelector('.dashboard-cards');
 cardButtons.addEventListener('click', function(e) {
     let target = e.target;
-    // console.log(target);
     if(target.matches('.delete-button')) {
         deleteEntry(target.id);
     }
@@ -367,7 +364,6 @@ cardButtons.addEventListener('click', function(e) {
     e.preventDefault();
     let target = e.target;
     if(target.matches('.update-entry-button')) {
-        console.log(target.id);
         updateInfo(target, target.id);
     }
 });
