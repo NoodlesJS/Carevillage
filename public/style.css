@@ -136,22 +136,10 @@ html { font-family: 'Inter', sans-serif; }
     align-items: center;
 }
 
-.loading-screen-click {
-    min-height: 100vh;
-    min-width: 100vw;
-    max-width: 100%;
-
-    position: fixed;
-    background: rgb(0, 0, 0, 0.1);
-
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
 
 .loading-card {
-    height: 150px;
-    width: 300px;
+    height: 250px;
+    width: 350px;
     padding: 5px;
 
     display: flex;
