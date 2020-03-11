@@ -8,7 +8,7 @@ mongoose.Promise = global.Promise;
 dotenv.config();
 
 
-app.use(morgan('common'));
+// app.use(morgan('common'));
 
 app.use(express.static('public'));
 
@@ -43,7 +43,7 @@ function runServer() {
         }
         server = app
           .listen(process.env.PORT||8080, () => {
-            console.log(`DB connected and your app is listening on some port`);
+            console.log(`DB connected and your app is listening on 8080`);
             resolve();
           })
           .on('error', err => {

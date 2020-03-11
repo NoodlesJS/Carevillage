@@ -217,8 +217,9 @@ async function signUp() {
         body: data
     })
 
-    
+    console.log(response);
     const newUser = await response.json();
+    console.log(newUser);
     try {
         if('Error' in newUser) {
             document.querySelector('.loading').classList.add('hide');
