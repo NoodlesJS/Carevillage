@@ -74,7 +74,7 @@ All in all, I love the whole process from beginning to end. It is an absolute jo
 
 
 **Some sketches from my notes**
-  <img  src='./public/img/carevillage_sketch.png'  width='1000px'>
+  <img  src='./public/img/carevillage_sketch.jpg'  width='1000px'>
   
 
 ## THANK YOU
