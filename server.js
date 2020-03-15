@@ -37,13 +37,13 @@ let server;
 
 function runServer() {
     return new Promise((resolve, reject) => {
-      mongoose.connect(process.env.DB_CONNECT, { useNewUrlParser: true }, err => {
+      mongoose.connect(process.env.DB_CONNECT, { useNewUrlParser: true, useUnifiedTopology: true }, err => {
         if (err) {
           return reject(err);
         }
         server = app
           .listen(process.env.PORT||8080, () => {
-            console.log(`DB connected and your app is listening on 8080`);
+            // console.log(`DB connected and your app is listening on 8080`);
             resolve();
           })
           .on('error', err => {

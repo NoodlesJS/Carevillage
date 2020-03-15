@@ -42,10 +42,14 @@ router.post('/register', async (req,res) => {
 })
 
 router.post('/login', async (req, res) =>{
+
     const err = {};
     // VALIDATE DATA
     const {error} = loginValidation(req.body);
-    if(error) return res.status(400).json(error.details[0].message);
+    if(error) {
+        err.Error = error.details[0].message
+        return res.status(400).send(err);
+    }
 
     // CHECK IF EMAIL EXISTS
     const user = await User.findOne({email: req.body.email});
