@@ -64,7 +64,7 @@ Password: test1234
 
 ## Development Process
 
-  I initially brainstorm and note down any ideas I come up with. Next I quickly think the ideas through and try to get a feel for what the development would be like. Once I have gone through the ideas, I select one based on combinations or interest, real-world need, technical challenge etc.
+  I initially brainstorm and note down any ideas I come up with. Next I quickly think the ideas through and try to get a feel for what the development would be like. Once I have gone through the ideas, I select one based on combinations of interest, real-world need, technical challenges etc.
   
 Once I have selected an idea to develop, i start sketching out design plans and rough wireframes of how everything would work. Afterwards when I have a basic design idea, I move onto ***FIGMA*** to design the UI for my application. In our current technology space, there is no excuse to not have a responsive design that will fit all screens ranging from Desktop to Mobile. So I always make sure to design my UI based on that which immensely helps the development.
 
