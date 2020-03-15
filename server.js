@@ -34,6 +34,7 @@ app.use("*", (req, res) => {
 
 // SERVER RUN AND CLOSE
 let server;
+let port = process.env.PORT||8080;
 
 function runServer() {
     return new Promise((resolve, reject) => {
@@ -42,8 +43,8 @@ function runServer() {
           return reject(err);
         }
         server = app
-          .listen(process.env.PORT||8080, () => {
-            // console.log(`DB connected and your app is listening on 8080`);
+          .listen(port, () => {
+            console.log(`DB connected and your app is listening on ${port}`);
             resolve();
           })
           .on('error', err => {
