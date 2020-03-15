@@ -27,13 +27,21 @@ chai.use(chaiHttp);
 
 describe('Carevillage Application Test', function() {
 
-    let testUser = ''
-    let auth_token = ''
+    let testUser = '';
+    let testUser2 = '';
+    let auth_token = '';
     const password = 'testpassword';
 
     before(async function() {
         runServer();
 
+        testUser2 = await new user({
+            name: faker.name.findName(),
+            email: faker.internet.email(),
+            password: faker.internet.password()
+        }).save();
+
+        //REGISTERING USER FOR TESTING LOGIN ROUTES
         this.timeout(15000);
         return testUser = await 
         chai.request(app).post('/api/user/register')
@@ -45,6 +53,7 @@ describe('Carevillage Application Test', function() {
         });
     });
     after(async function() {
+        await testUser2.deleteOne();
         await user.findOne({email: testUser.body.email}).deleteOne();
         closeServer();
     });
@@ -148,7 +157,7 @@ describe('Carevillage Application Test', function() {
             .set('content-type', 'application/json')
             .send({
                 name: faker.name.findName(),
-                email: 'john@email.com',
+                email: testUser2.email,
                 password: faker.internet.password()
             })
 
@@ -156,7 +165,7 @@ describe('Carevillage Application Test', function() {
                 expect(data).to.have.status(400);
                 expect(data.body).to.be.an('object');
                 expect(data.body).to.have.keys('Error')
-                expect(data.body.Error).to.include(`john@email.com already exists`);
+                expect(data.body.Error).to.include(`${testUser2.email} already exists`);
             } catch (error) {
                 expect.fail(error)
             }
