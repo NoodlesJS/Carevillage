@@ -38,7 +38,7 @@ let port = process.env.PORT||8080;
 
 function runServer() {
     return new Promise((resolve, reject) => {
-      mongoose.connect(process.env.DB_CONNECT || 'mongodb://localhost/carevillage-test-DB', { useNewUrlParser: true, useUnifiedTopology: true }, err => {
+      mongoose.connect(process.env.DB_CONNECT || 'mongodb://localhost/carevillage-test-DB', { useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false }, err => {
         if (err) {
           return reject(err);
         }

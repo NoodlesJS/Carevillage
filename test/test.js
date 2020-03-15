@@ -4,25 +4,11 @@ const faker = require('faker');
 
 const { app, runServer, closeServer }= require('../server');
 const user = require('../models/userModel');
+const meds = require('../models/medsModel');
 
 const expect = chai.expect;
 chai.use(chaiHttp);
 
-
-
-//     beforeEach(async function() {
-//         testUser = new user({
-//             name: name,
-//             email: email,
-//             password: password
-//         });
-//         return await testUser.save();
-//     });
-
-//     afterEach(async function() {
-//         return await testUser.remove();
-//     });
-    
 
 
 describe('Carevillage Application Test', function() {
@@ -33,6 +19,7 @@ describe('Carevillage Application Test', function() {
     const password = 'testpassword';
 
     before(async function() {
+        this.timeout(15000);
         runServer();
 
         testUser2 = await new user({
@@ -41,9 +28,10 @@ describe('Carevillage Application Test', function() {
             password: faker.internet.password()
         }).save();
 
+        
+
         //REGISTERING USER FOR TESTING LOGIN ROUTES
-        this.timeout(15000);
-        return testUser = await 
+        testUser = await 
         chai.request(app).post('/api/user/register')
         .set('content-type', 'application/json')
         .send({
@@ -51,8 +39,22 @@ describe('Carevillage Application Test', function() {
             email: faker.internet.email(),
             password: password
         });
+
+        //MEDS BY 'testUser' FOR TESTING
+        for(let i = 0; i < 5; i++) {
+            await new meds({
+                user: (await user.findOne({email: testUser.body.email}))._id,
+                medicine: faker.commerce.product(),
+                amount: faker.finance.amount(),
+                prescriber: faker.name.findName(),
+                pharmacy: faker.company.companyName(),
+                start: `01/1${i}/2020`
+            }).save();
+        }
     });
+
     after(async function() {
+        await meds.find({user: (await user.findOne({email: testUser.body.email}))._id}).deleteMany();
         await testUser2.deleteOne();
         await user.findOne({email: testUser.body.email}).deleteOne();
         closeServer();
@@ -310,6 +312,80 @@ describe('Carevillage Application Test', function() {
                 auth_token = data.body.token;
             } catch (error) {
                 expect.fail(error)
+            }
+        });
+    });
+
+    describe('MEDS ROUTE - CRUD', function() {
+        it('Should get all the medicine for the user', async function() {
+            const data = await chai.request(app).get('/api/meds/').set('auth-token', auth_token);
+
+            try {
+                expect(data).to.have.status(200);
+                expect(data.body).to.be.an('object');
+                expect(data.body.projects).to.be.an('array');
+                expect(data.body.user).to.be.an('object');
+                expect(data.body.projects).to.not.be.empty;
+                // expect(data.body.projects[1]).to.have.keys('_id', 'user', 'medicine', 'amount', 'prescriber', 'pharmacy', 'start');
+                expect(data.body.user).to.have.keys('name', 'email');
+            } catch (error) {
+                expect.fail(error);
+            }
+        });
+
+        it('Should post new medicine for the user', async function() {
+            const data = await chai.request(app).post('/api/meds/post')
+            .set('auth-token', auth_token)
+            .send({
+                medicine: faker.commerce.product(),
+                amount: faker.finance.amount(),
+                prescriber: faker.name.findName(),
+                pharmacy: faker.company.companyName(),
+                start: faker.date.past()
+            });
+
+            try {
+                expect(data).to.have.status(201);
+                expect(data.body).to.be.an('object');
+                expect(data.body).to.have.keys('user', 'medicine', 'amount', 'prescriber', 'pharmacy', 'start');
+            } catch (error) {
+                expect.fail(error);
+            }
+        });
+
+        it('Should update medicine for the user', async function() {
+            const id = (await meds.findOne({user: (await user.findOne({email: testUser.body.email}))._id}))._id;
+            const data = await chai.request(app).put(`/api/meds/${id}`)
+            .set('auth-token', auth_token)
+            .send({
+                medicine: faker.commerce.product(),
+                amount: faker.finance.amount(),
+                prescriber: faker.name.findName(),
+                pharmacy: faker.company.companyName(),
+                start: faker.date.past()
+            });
+
+            try {
+                expect(data).to.have.status(200);
+                expect(data.body).to.be.an('object');
+                expect(data.body).to.not.be.empty;
+                // expect(data.body).to.have.keys('user', 'medicine', 'amount', 'prescriber', 'pharmacy', 'start');
+            } catch (error) {
+                expect.fail(error);
+            }
+        });
+
+        it('Should delete medicine for user', async function() {
+            const id = (await meds.findOne({user: (await user.findOne({email: testUser.body.email}))._id}))._id;
+            const data = await chai.request(app).delete(`/api/meds/${id}`).set('auth-token', auth_token);
+            
+            try {
+                expect(data).to.have.status(200);
+                expect(data.body).to.be.an('object');
+                expect(data.body).to.have.keys('message');
+                expect(data.body.message).to.include('success');
+            } catch (error) {
+                expect.fail(error);
             }
         });
     });
